@@ -44,8 +44,6 @@ public class Main{
             String username= F_username.getText();
             String password=String.valueOf(F_password.getPassword());
 
-            System.out.println(password);
-
             if (username.equals("")){
                 JOptionPane.showMessageDialog(null,"Please enter some username.");
             }
@@ -61,7 +59,6 @@ public class Main{
                     String sttmnt= ("SELECT * FROM USERS WHERE USERNAME= '"+username+"' AND PASSWORD= '"+password+"';"); //
                     ResultSet result= statement.executeQuery(sttmnt);
                     if (result.next()==false){
-                        System.out.print("No such user");
                         JOptionPane.showMessageDialog(null,"Incorrectly entered Username or Password.");
                     }
                     else{
@@ -264,6 +261,7 @@ public class Main{
                     statement.executeUpdate("USE LIBRARY");
 
                     ResultSet resultSet= statement.executeQuery("select RESERVED from BOOKS where BOOKID= "+bookid+"");
+                    resultSet.next();
                     if(resultSet.getBoolean("RESERVED")==true){
                         JOptionPane.showMessageDialog(null,"Book unavailable for reserving. Try again later.");
                         f15.dispose();
@@ -479,22 +477,22 @@ public class Main{
 
             JLabel l1,l2,l3,l4;
             l1= new JLabel("Issue ID (ISSUEID)");
-            l1.setBounds(30,15,120,30);
+            l1.setBounds(30,15,150,30);
 
             l2= new JLabel("Book ID (BOOKID)");
-            l2.setBounds(30,85,120,30);
+            l2.setBounds(30,85,150,30);
 
             l4= new JLabel("Return Date(DD-MM-YYYY)");
-            l4.setBounds(30,50,150,30);
+            l4.setBounds(30,50,180,30);
 
             JTextField F_issueid= new JTextField();
-            F_issueid.setBounds(150,15,200,30);
+            F_issueid.setBounds(180,15,200,30);
 
             JTextField F_bookid= new JTextField();
-            F_bookid.setBounds(150,85,200,30);
+            F_bookid.setBounds(180,85,200,30);
 
             JTextField F_return= new JTextField();
-            F_return.setBounds(220,50,130,30);
+            F_return.setBounds(250,50,130,30);
 
             JButton create_button1 = new JButton("Return");
             create_button1.setBounds(130,170,90,25);
@@ -572,7 +570,7 @@ public class Main{
             f1.add(F_issueid);
             f1.add(F_return);
             f1.add(F_bookid);
-            f1.setSize(350,250);
+            f1.setSize(400,250);
             f1.setLayout(null);
             f1.setVisible(true);
             f1.setLocationRelativeTo(null);
