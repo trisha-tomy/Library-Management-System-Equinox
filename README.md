@@ -42,12 +42,16 @@ INSERT INTO BOOKS(BOOKNAME, GENRE, PRICE) VALUES('War and Peace', 'Mystery', 200
 
 ```
 Note: Every line is a separate command
-Note: I later added columns AUTHOR, ISSUED, RESERVED, RESERVED_BY to TABLE BOOKS, with fields being VARCHAR, BOOLEAN, BOOLEAN, INT respectively and initialised them all to NULL and 0.
+Note: I later added columns `AUTHOR`, `ISSUED`, `RESERVED`, `RESERVED_BY` to `TABLE BOOKS`, with fields being `VARCHAR`, `BOOLEAN`, `BOOLEAN`, `INT` respectively and initialised them all to NULL and 0.
 * Now you can start executing
 
 * The default admin username and password are admin and admin respectively. For the default user passwords, I used user1 and user1. A UserID can be created using the admin login.
 * All the funcitionalities are demonstrated in the Slide Deck I have linked below.
 
+### Screenshots of this project can be found in the Google Drive given below
+
+
 # Links:
 * [Slide Deck](https://www.canva.com/design/DAFdkoNVn7Y/z_OQwQUmefcsawv4uSbC9w/view?utm_content=DAFdkoNVn7Y&utm_campaign=designshare&utm_medium=link2&utm_source=sharebutton)
-* [Video Demonstration] (https://www.loom.com/share/085e9c2a85eb433a9c42109cdabcc990)
+* [Video Demonstration](https://www.loom.com/share/085e9c2a85eb433a9c42109cdabcc990)
+* [Google Drive](https://drive.google.com/drive/folders/1WPIs3opVLeR53DpDK8XRSmIEAOdKOkvD?usp=share_link)
