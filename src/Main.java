@@ -98,7 +98,9 @@ public class Main{
     public static Connection connect(){
         try{
             Class.forName("com.mysql.cj.jdbc.Driver");
-            Connection con= DriverManager.getConnection("jdbc:mysql://localhost/LIBRARY?"+"user=db_user&password=123456");
+            String db_user="db_user";
+            String db_pwd="123456";
+            Connection con= DriverManager.getConnection("jdbc:mysql://localhost/LIBRARY?"+"user="+db_user+"&password="+db_pwd);
             return con;
         }
         catch (Exception exception){
