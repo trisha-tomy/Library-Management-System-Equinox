@@ -20,29 +20,60 @@ I faced various challenges in the making of this project, especially because I w
 
 ## Installing and running this project:
 * Requires Java
-* Add `mysql:mysql-connector-java:8.0.30` library using maven in your IDE (I used IntelliJ IDEA)
+* UPDATED: Download the JDBC connector from Oracle [here](https://dev.mysql.com/downloads/connector/j/) Extract the JDBC JAR file to your project to the lib directory(if it doesn't exist, create a new one). OLD: Add `mysql:mysql-connector-java:8.0.30` library using maven in your IDE (I used IntelliJ IDEA)
 * Download the code
 * Add a LIBRARY in MySQL using MariaDB (in my case on Linux)
+* UPDATED: Create a new user using the following, replacing the username and password you'd like to use: ```GRANT ALL PRIVILEGES ON *LIBRARY* TO 'user1'@localhost IDENTIFIED BY 'password1';```
 * To this library, add tables by the name of BOOKS, USERS, ISSUED, into these tables add columns as detailed below.
 ```
 # code block
-CREATE DATABASE LIBRARY
+CREATE DATABASE LIBRARY;
+USE LIBRARY;
 
-USE LIBRARY
+CREATE TABLE USERS (
+    USERID INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    USERNAME VARCHAR(30),
+    ADMIN BOOLEAN,
+    PASSWORD VARCHAR(30)
+);
 
-CREATE TABLE USERS(USERID INT NOT NULL AUTO_INCREMENT PRIMARY KEY, USERNAME VARCHAR(30), ADMIN BOOLEAN)
+INSERT INTO USERS (USERNAME, PASSWORD, ADMIN) VALUES ('admin', 'admin', TRUE);
 
-INSERT INTO USERS(USERNAME, PASSWORD, ADMIN) VALUES('admin', 'admin', TRUE)
+CREATE TABLE BOOKS (
+    BOOKID INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    BOOKNAME VARCHAR(50),
+    GENRE VARCHAR(20),
+    PRICE INT,
+    AUTHOR VARCHAR(255),
+    ISSUED BOOLEAN,
+    RESERVED BOOLEAN,
+    RESERVED_BY INT
+);
 
-CREATE TABLE BOOKS(BOOKID INT NOT NULL AUTO_INCREMENT PRIMARY KEY, BOOKNAME VARCHAR(50), GENRE VARCHAR(20), PRICE INT, )
+CREATE TABLE ISSUED (
+    ISSUEDID INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    USERID INT,
+    BOOKID INT,
+    ISSUED_DATE VARCHAR(20),
+    RETURN_DATE VARCHAR(20),
+    PERIOD INT,
+    FINE INT
+);
 
-CREATE TABLE ISSUED (ISSUEDID INT NOT NULL AUTO_INCREMENT PRIMARY KEY, USERID INT, BOOKID INT, ISSUED_DATE VARCHAR(20), RETURN_DATE VARCHAR(20), PERIOD INT, FINE INT)
+INSERT INTO BOOKS (BOOKNAME, GENRE, PRICE) VALUES 
+('War and Peace', 'Mystery', 200),
+('The Guest Book', 'Fiction', 300),
+('The Perfect Murder', 'Mystery', 150),
+('Accidental Presidents', 'Biography', 250),
+('The Wicked King', 'Fiction', 350);
 
-INSERT INTO BOOKS(BOOKNAME, GENRE, PRICE) VALUES('War and Peace', 'Mystery', 200), ('The Guest Book', Fiction', 300), ('The Perfect Murder', 'Mystery', 150), ('Accidental Presidents', 'Biography', 250), ('The Wicked King', 'Fiction', 350)`
+UPDATE BOOKS SET AUTHOR = NULL, ISSUED = FALSE, RESERVED = FALSE, RESERVED_BY = 0;
 
 ```
 Note: Every line is a separate command
+UPDATED: Following note is now included in the code
 Note: I later added columns `AUTHOR`, `ISSUED`, `RESERVED`, `RESERVED_BY` to `TABLE BOOKS`, with fields being `VARCHAR`, `BOOLEAN`, `BOOLEAN`, `INT` respectively and initialised them all to NULL and 0.
+* Now, in the ```Main.java``` go to the connect() method and change the values of the variables ```db_user``` and ```db_pwd```.
 * Now you can start executing
 
 * The default admin username and password are admin and admin respectively. For the default user passwords, I used user1 and user1. A UserID can be created using the admin login.
